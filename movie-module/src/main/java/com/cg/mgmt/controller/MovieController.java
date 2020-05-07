@@ -4,7 +4,6 @@
 package com.cg.mgmt.controller;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -84,8 +83,8 @@ public class MovieController {
 //	Get Movie available on the theaters
 	
 	@GetMapping("/theater/{ID}/movie")
-	public List<Object[]> getMovieByTheaterID(@PathVariable(value = "ID") long ID){
-		
-		return movieService.getMovieByTheaterId(ID);
+	public ResponseEntity<Response> getMovieByTheaterID(@PathVariable(value = "ID") long ID){
+		return ResponseEntity.status(HttpStatus.OK)
+		.body(new Response(movieService.getMovieByTheaterId(ID), new Date()));
 	}
 }
